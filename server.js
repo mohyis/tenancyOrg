@@ -3,8 +3,11 @@ require('dotenv').config()
 const app = express()
 const PORT = process.env.DB_PORT || 9976
 const sequelize = require('./database/database')
+const organisationRouter = require('./router/organizationRouter')
 
-app.use(express.json())
+app.use(express.json()),
+app.use(organisationRouter)
+
 
 
 
