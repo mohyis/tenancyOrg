@@ -6,3 +6,4 @@ const upload = require('../middleware/multer')
 router.post('/company', upload.single('image'), createNewCompany)
 
 module.exports = router
+
