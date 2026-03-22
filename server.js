@@ -7,12 +7,14 @@ const organisationRouter = require('./router/organizationRouter')
 const staffRouter = require('./router/staffRouter')
 const equipmentRouter = require('./router/equipmentRouter')
 const orderRouter = require('./router/orderRouter')
+const deliveryRouter = require('./router/deliveryRouter')
 
 app.use(express.json()),
 app.use(organisationRouter)
 app.use(staffRouter)
 app.use(equipmentRouter)
 app.use(orderRouter)
+app.use(deliveryRouter)
 
 
 
