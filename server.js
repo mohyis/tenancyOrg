@@ -6,11 +6,13 @@ const sequelize = require('./database/database')
 const organisationRouter = require('./router/organizationRouter')
 const staffRouter = require('./router/staffRouter')
 const equipmentRouter = require('./router/equipmentRouter')
+const orderRouter = require('./router/orderRouter')
 
 app.use(express.json()),
 app.use(organisationRouter)
 app.use(staffRouter)
 app.use(equipmentRouter)
+app.use(orderRouter)
 
 
 
