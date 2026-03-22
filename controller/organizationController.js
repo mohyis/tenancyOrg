@@ -40,4 +40,34 @@ exports.createNewCompany = async(req,res)=>{
     }
 };
 
+exports.getRequiredDetails = async(req,res)=>{
+    try {
+         const {id} = req.params
+        const getDetails = await organization.findByPk(id, 
+            {include: 
+                [
+                    {model: staff, as: 'staffs', attributes: ['name','profilePhoto']},
+                    {model: equipments, as: 'equip', attributes: ['name', 'images']},
+                    {model: orders, as: 'order', attributes: ['type', 'images', 'amount', 'status', 'staff']},
+                    {model: delivery, as: 'deliver', attributes: ['processedBy']}
+                ], attributes: ['name']
+            })
 
+            if (!getDetails){
+                return res.status(404).json({
+                    message: 'details not found'
+                })
+            }
+
+            res.status(200).json({
+                message: 'detailed retrieved successfully',
+                getDetails
+            })
+        
+
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+};
