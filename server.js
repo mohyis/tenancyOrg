@@ -4,11 +4,11 @@ const app = express()
 const PORT = process.env.DB_PORT || 9976
 const sequelize = require('./database/database')
 const organisationRouter = require('./router/organizationRouter')
+const staffRouter = require('./router/staffRouter')
 
 app.use(express.json()),
 app.use(organisationRouter)
-
-
+app.use(staffRouter)
 
 
 
