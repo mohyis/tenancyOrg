@@ -71,3 +71,35 @@ exports.getRequiredDetails = async(req,res)=>{
         })
     }
 };
+
+exports.getAllDetails = async(req,res)=>{
+    try {
+         const {id} = req.params
+        const getAllDetail = await organization.findAll( 
+            {include: 
+                [
+                    {model: staff, as: 'staffs', attributes: ['name','profilePhoto']},
+                    {model: equipments, as: 'equip', attributes: ['name', 'images']},
+                    {model: orders, as: 'order', attributes: ['type', 'images', 'amount', 'status', 'staff']},
+                    {model: delivery, as: 'deliver', attributes: ['processedBy']}
+                ], attributes: ['name']
+            })
+
+            if (!getAllDetail){
+                return res.status(404).json({
+                    message: 'details not found'
+                })
+            }
+
+            res.status(200).json({
+                message: 'All details retrieved successfully',
+                getAllDetail
+            })
+        
+
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+};
