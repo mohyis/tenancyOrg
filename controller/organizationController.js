@@ -12,7 +12,7 @@ exports.createNewCompany = async(req,res)=>{
 
         const result = await cloudinary.uploader.upload(req.file.path)
 
-        // fs.unlinkSync(req.file.path)
+        await fs.promises.unlinkSync(req.file.path)
 
         const company = {
             name, 
@@ -32,7 +32,7 @@ exports.createNewCompany = async(req,res)=>{
 
         
     } catch (error) {
-        fs.unlinkSync(req.file.path)
+       await fs.promises.unlinkSync(req.file.path)
         
         res.status(500).json({
             message: error.message
@@ -42,7 +42,6 @@ exports.createNewCompany = async(req,res)=>{
 
 exports.getRequiredDetails = async(req,res)=>{
     try {
-         const {id} = req.params
         const getDetails = await organization.findByPk(id, 
             {include: 
                 [
