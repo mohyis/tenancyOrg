@@ -17,7 +17,7 @@ exports.createNewOrder = async(req,res)=>{
             images.push(result.secure_url)
             imagePublicIds.push(result.public_id);
 
-            fs.promises.unlinkSync(path)
+            fs.unlinkSync(path)
             
         }
 

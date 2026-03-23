@@ -12,7 +12,7 @@ exports.createNewCompany = async(req,res)=>{
 
         const result = await cloudinary.uploader.upload(req.file.path)
 
-        await fs.promises.unlinkSync(req.file.path)
+         fs.unlinkSync(req.file.path)
 
         const company = {
             name, 
@@ -32,7 +32,7 @@ exports.createNewCompany = async(req,res)=>{
 
         
     } catch (error) {
-       await fs.promises.unlinkSync(req.file.path)
+        fs.unlinkSync(req.file.path)
         
         res.status(500).json({
             message: error.message

@@ -21,11 +21,11 @@ module.exports = {
         allowNull: false
       },
       images: {
-        type: Sequelize.JSON,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       imagePublicIds: {
-        type: Sequelize.JSON,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       amount: {
