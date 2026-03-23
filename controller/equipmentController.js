@@ -16,7 +16,7 @@ exports.createNewEquipment = async(req,res)=>{
             images.push(result.secure_url)
             imagePublicIds.push(result.public_id);
 
-            fs.unlinkSync(path)
+            fs.promises.unlinkSync(path)
             
         }
 
@@ -40,7 +40,7 @@ exports.createNewEquipment = async(req,res)=>{
         
     } catch (error) {
        req.files.forEach((element)=> {
-        fs.unlinkSync(element.path)
+        fs.promises.unlinkSync(element.path)
        })
             res.status(500).json({ 
                 message: error.message
