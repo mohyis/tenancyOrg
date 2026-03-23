@@ -8,7 +8,7 @@ exports.createNewStaff = async(req,res)=>{
 
         const result = await cloudinary.uploader.upload(req.file.path)
 
-        fs.promises.unlinkSync(req.file.path)
+        fs.unlinkSync(req.file.path)
 
         const newStaff = { 
            organizationId, 
@@ -29,7 +29,7 @@ exports.createNewStaff = async(req,res)=>{
 
         
     } catch (error) {
-        fs.promises.unlinkSync(req.file.path)
+        fs.unlinkSync(req.file.path)
         
         res.status(500).json({
             message: error.message
